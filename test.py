@@ -3,7 +3,7 @@ import torch
 
 # model = Net(10, 2)
 def u(x, y): return 3+y+0.5*(y**2-x**2)
-model_path = './weights/model1.thang'
+model_path = './weights/problem_laplace_1.bin'
 model = torch.load(model_path)
 
 # radius = math.sqrt(6)

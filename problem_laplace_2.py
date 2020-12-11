@@ -4,7 +4,7 @@ from torch.autograd.variable import Variable
 import random
 import numpy as np
 import matplotlib.pyplot as plt
-from Net import Net
+from Net2 import Net2
 import math
 import torch.optim as optim
 import tqdm
@@ -82,12 +82,12 @@ class Problem_Laplace_1:
 
 if __name__ == '__main__':
     # Init neural network with layer size: 10, dim input: 2
-    model = Net(10, 2)
+    model = Net2(10, 2)
 
     num_iteration = 2000
-    model.init_weights()
+    # model.init_weights()
 
-    equation = Problem_Laplace_1(name='problem_laplace_1')
+    equation = Problem_Laplace_1(name='problem_laplace_2')
 
     losses = []
     errors = []
