@@ -11,6 +11,7 @@ class Problem_1(Equation):
     def __init__(self, model, name=None, num_point=1000):
         super().__init__(model, name, num_point=num_point)
         self.name = "Phương trình Laplace"
+        self.ndim = 2
 
     def generate_data(self):
         omega_points = []
@@ -40,19 +41,30 @@ class Problem_1(Equation):
         omega_points, boundary_points = samples
 
         for omega in omega_points:
-            point_input = Variable(torch.Tensor(
-                omega).resize(2, 1), requires_grad=True)
-            point_output = self.model(point_input)
-            L1 += (-laplacian(point_output, point_input))**2
+            point = Variable(torch.Tensor(
+                omega).resize(self.ndim, 1), requires_grad=True)
+            out = self.model(point)
+            L1 += (-laplacian(out, point))**2
 
-        for boudary in boundary_points:
-            b_point_input = Variable(torch.Tensor(
-                boudary).resize(2, 1), requires_grad=True)
-            b_point_output = self.model(b_point_input)
-            L2 += (b_point_output - self.boundary_condition(b_point_input))**2
+        for boundary in boundary_points:
+            b_point = Variable(torch.Tensor(
+                boundary).resize(self.ndim, 1), requires_grad=True)
+            b_out = self.model(b_point)
+            L2 += (b_out - self.boundary_condition(b_point))**2
 
         L1 = L1/len(omega_points)
         L2 = L2/len(boundary_points)
 
         loss = L1 + L2
         return loss
+
+    def calculate_l2_error(self, samples):
+        test_omega, test_boundary = samples
+        samples = test_omega + test_boundary
+        L2_error = 0
+        for point in samples:
+            test_point_input = torch.Tensor(point).resize(self.ndim, 1)
+            L2_error += (self.model(test_point_input) -
+                         self.extract_solution(test_point_input))**2
+        L2_error /= len(samples)
+        return math.sqrt(L2_error.item())
