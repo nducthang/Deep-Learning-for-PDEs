@@ -56,14 +56,3 @@ class Problem_1(Equation):
 
         loss = L1 + L2
         return loss
-
-    def calculate_l2_error(self, samples):
-        test_omega, test_boundary = samples
-        samples = test_omega + test_boundary
-        L2_error = 0
-        for point in samples:
-            test_point_input = torch.Tensor(point).resize(2, 1)
-            L2_error += (self.model(test_point_input) -
-                         self.extract_solution(test_point_input))**2
-        L2_error /= len(samples)
-        return math.sqrt(L2_error.item())
