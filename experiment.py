@@ -1,5 +1,6 @@
 from problem_1 import Problem_1
-from Net import Net
+from Model.Net import Net
+
 if __name__ == '__main__':
     model = Net(20, 2)
     model.init_weights()
