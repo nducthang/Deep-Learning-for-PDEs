@@ -11,11 +11,10 @@ from torch.autograd.variable import Variable
 
 
 class Problem_2(Equation):
-    def __init__(self, model, name=None, num_point=1000):
-        super().__init__(model, name=name, num_point=num_point)
+    def __init__(self, model, name = None, ndim = 2, num_point = 1000):
+        super().__init__(model, name=name, ndim=ndim, num_point=num_point)
         self.name = "Phương trình Laplace 2"
-        self.ndim = 2
-
+        
     def generate_data(self):
         omega_points = []
         boundary_points = []

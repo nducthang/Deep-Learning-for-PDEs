@@ -8,11 +8,10 @@ import numpy as np
 
 
 class Problem_1(Equation):
-    def __init__(self, model, name=None, num_point=1000):
-        super().__init__(model, name, num_point=num_point)
-        self.name = "Phương trình Laplace"
-        self.ndim = 2
-
+    def __init__(self, model, name = None, ndim = 2, num_point = 1000):
+        super().__init__(model, name=name, ndim=ndim, num_point=num_point)
+        self.name = "Phương trình laplace 1"
+    
     def generate_data(self):
         omega_points = []
         boundary_points = []

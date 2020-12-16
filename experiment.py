@@ -4,10 +4,10 @@ from Model.Net import Net
 from Model.Net2 import Net2
 
 if __name__ == '__main__':
-    model = Net2(20, 2)
+    model = Net(20, 2)
     # model.init_weights()
 
-    problem = Problem_2(model)
+    problem = Problem_1(model)
     problem.train(num_iterator=200)
     problem.save_model('./model.bin')
     problem.plot_loss('./loss.png')
