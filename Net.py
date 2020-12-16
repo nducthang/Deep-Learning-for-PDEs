@@ -1,5 +1,6 @@
 import torch
 import torch.nn as nn
+import torch.nn.functional as F
 
 class Net(nn.Module):
     def __init__(self, hidden_size, dim_input):
@@ -23,7 +24,8 @@ class Net(nn.Module):
 
     def forward(self, x):
 
-        S1 = torch.tanh(torch.mm(self.W1, x)+ self.b1)
+        S1 = torch.sigmoid(torch.mm(self.W1, x) + self.b1)
+        # S1 = torch.tanh(torch.mm(self.W1, x)+ self.b1)
         out = torch.mm(self.W, S1) + self.b
 
         return out

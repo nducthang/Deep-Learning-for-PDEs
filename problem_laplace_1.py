@@ -82,9 +82,9 @@ class Problem_Laplace_1:
 
 if __name__ == '__main__':
     # Init neural network with layer size: 10, dim input: 2
-    model = Net(10, 2)
+    model = Net(20, 2)
 
-    num_iteration = 2000
+    num_iteration = 50
     model.init_weights()
 
     equation = Problem_Laplace_1(name='problem_laplace_1')
@@ -127,7 +127,7 @@ if __name__ == '__main__':
     plt.xlabel('Iterations')
     plt.ylabel('L2 error')
     plt.title("MSE of " + str(equation.name))
-    plt.plot(epochs, errors)
+    plt.plot(epochs, np.log(errors))
     plt.savefig('./plots/error_' + equation.name + '.png')
 
     print("Saving loss and error to .txt files...")
