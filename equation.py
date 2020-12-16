@@ -6,7 +6,7 @@ import math
 
 
 class Equation:
-    def __init__(self, model, name=None, ndim = 2, num_point=1000):
+    def __init__(self, model, name = None, ndim = None, num_point=1000):
         self.num_point = num_point
         self.model = model
         self.losses = []

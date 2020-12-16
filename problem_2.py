@@ -11,34 +11,36 @@ from torch.autograd.variable import Variable
 
 
 class Problem_2(Equation):
-    def __init__(self, model, name = None, ndim = 2, num_point = 1000):
-        super().__init__(model, name=name, ndim=ndim, num_point=num_point)
-        self.name = "Phương trình Laplace 2"
+    def __init__(self, model):
+        super().__init__(self)
+        self.name = "Phương trình laplace 2"
+        self.model = model
+        self.ndim = 2
         
     def generate_data(self):
         omega_points = []
         boundary_points = []
 
         for i in range(self.num_point):
-            x = random.random()
-            y = random.random()
+            x = random.uniform(0, 1)
+            y = random.uniform(0, 1)
             omega_points.append([x, y])
 
         for i in range(self.num_point//4):
             y = 0
-            x = random.random()
+            x = random.uniform(0, 1)
             boundary_points.append([x, y])
         for i in range(self.num_point//4):
             x = 1
-            y = random.random()
+            y = random.uniform(0, 1)
             boundary_points.append([x, y])
         for i in range(self.num_point//4):
             y = 1
-            x = random.random()
+            x = random.uniform(0, 1)
             boundary_points.append([x, y])
         for i in range(self.num_point - len(boundary_points)):
             x = 0
-            y = random.random()
+            y = random.uniform(0, 1)
             boundary_points.append([x, y])
 
         return omega_points, boundary_points
