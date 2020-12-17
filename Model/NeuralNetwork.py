@@ -51,9 +51,8 @@ class NeuralNetwork(nn.Module):
         return out
 
 
-def count_parameters():
+def count_parameters(model):
     total_param = 0
-    model = NeuralNetwork(2, 1, 16, 1)
     for name, param in model.named_parameters():
         if param.requires_grad:
             num_param = np.prod(param.size())
