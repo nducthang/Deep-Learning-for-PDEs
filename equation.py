@@ -14,6 +14,7 @@ class Equation:
         self.num_iterator = 0
         self.name = name
         self.ndim = ndim
+        self.step_save = 10
 
     def generate_data(self):
         pass
@@ -26,10 +27,14 @@ class Equation:
 
     def calculate_l2_error(self, samples):
         pass
+    
+    def split_grid(self):
+        pass
 
-    def train(self, num_iterator=50):
+    def train(self, num_iterator=50, path_model = None):
         self.num_iterator = self.num_iterator + num_iterator
         optimizer = optim.AdamW(self.model.parameters())
+        test_points = self.split_grid()
         for i in tqdm.tqdm(range(num_iterator)):
             samples = self.generate_data()
             optimizer.zero_grad()
@@ -39,9 +44,10 @@ class Equation:
             self.losses.append(loss.item())
 
             optimizer.step()
-            test_points = self.generate_data()
             L2_error = self.calculate_l2_error(test_points)
             self.errors.append(L2_error)
+            if (i+1) % self.step_save == 0:
+                self.save_model(path_model + 'model_' + str(i+1) + '.bin')
 
     def save_model(self, path):
         torch.save(self.model, path)

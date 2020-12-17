@@ -6,7 +6,7 @@ from torch.autograd import grad
 from torch.autograd.variable import Variable
 from equation import Equation
 import random
-
+import numpy as np
 
 class Problem_3(Equation):
     def __init__(self, model):
@@ -109,10 +109,16 @@ class Problem_3(Equation):
 
         loss = L1 + L2 + L3
         return loss
+    
+    def split_grid(self):
+        x = np.linspace(0.0, 1.0, 50)
+        y = np.linspace(0.0, 1.0, 50)
+        t = np.linspace(0.0, 1.0, 10)
+        X, Y, T = np.meshgrid(x, y, t)
+        zs = np.array([[x, y, t] for x,y,t in zip(np.ravel(X), np.ravel(Y), np.ravel(T))])
+        return zs
 
     def calculate_l2_error(self, samples):
-        points, omega_points, boundary_points = samples
-        samples = points + omega_points + boundary_points
         L2_error = 0
         for p in samples:
             point = torch.Tensor(p).resize(self.ndim, 1)

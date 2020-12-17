@@ -58,10 +58,21 @@ class Problem_1(Equation):
 
         loss = L1 + L2
         return loss
+    def split_grid(self):
+        x1 = np.linspace(-math.sqrt(6), math.sqrt(6), 100)
+        x2 = np.linspace(-math.sqrt(6), math.sqrt(6), 100)
+        X, Y = np.meshgrid(x1, x2)
+        zs = [[x, y] for x,y in zip(np.ravel(X), np.ravel(Y))]
+
+        result = []
+        for item in zs:
+            x, y = item
+            if x**2+y**2 <= math.sqrt(6):
+                result.append(item)
+
+        return result
 
     def calculate_l2_error(self, samples):
-        test_omega, test_boundary = samples
-        samples = test_omega + test_boundary
         L2_error = 0
         for point in samples:
             test_point_input = torch.Tensor(point).resize(self.ndim, 1)

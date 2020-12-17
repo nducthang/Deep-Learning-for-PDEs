@@ -8,7 +8,7 @@ import math
 import torch
 import random
 from torch.autograd.variable import Variable
-
+import numpy as np
 
 class Problem_2(Equation):
     def __init__(self, model):
@@ -81,9 +81,14 @@ class Problem_2(Equation):
         loss = L1 + L2
         return loss
 
+    def split_grid(self):
+        x1 = np.linspace(0.0, 1.0, 100)
+        x2 = np.linspace(0.0, 1.0, 100)
+        X, Y = np.meshgrid(x1, x2)
+        zs = np.array([[x, y] for x,y in zip(np.ravel(X), np.ravel(Y))])
+        return zs
+    
     def calculate_l2_error(self, samples):
-        test_omega, test_boundary = samples
-        samples = test_omega + test_boundary
         L2_error = 0
         for point in samples:
             test_point_input = torch.Tensor(point).resize(self.ndim, 1)
