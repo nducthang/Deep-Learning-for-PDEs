@@ -6,7 +6,7 @@ import math
 
 
 class Equation:
-    def __init__(self, model, name = None, ndim = None, num_point=1000):
+    def __init__(self, model, name = None, ndim = None, num_point=400):
         self.num_point = num_point
         self.model = model
         self.losses = []
@@ -14,7 +14,7 @@ class Equation:
         self.num_iterator = 0
         self.name = name
         self.ndim = ndim
-        self.step_save = 10
+        self.step_save = 50
 
     def generate_data(self):
         pass
