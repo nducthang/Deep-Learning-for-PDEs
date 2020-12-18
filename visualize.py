@@ -5,7 +5,7 @@ import numpy as np
 import math
 import random
 
-model_path = './results/test7/model_2000.bin'
+model_path = './results/test11/model_2000.bin'
 model = torch.load(model_path)
 
 
@@ -24,7 +24,7 @@ def visualize(num_element=100):
     x2 = np.linspace(b1, b2, num=num_element)
     X, Y = np.meshgrid(x1, x2)
 
-    Z = u2(X, Y)
+    Z = u(X, Y)
 
     fig = plt.figure()
     ax = plt.axes(projection="3d")
