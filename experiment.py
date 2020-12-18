@@ -8,18 +8,18 @@ from Model.HL import PDENetLight
 from Model.NeuralNetwork import NeuralNetwork
 
 
-PATH_MODEL = './results/test5/'
-PATH_LOSS_IMAGE = './results/test5/loss.png'
-PATH_L2_ERROR_IMAGE = './results/test5/l2_error.png'
-PATH_LOSS_TXT = './results/test5/loss.txt'
-PATH_L2_ERROR_TXT = './results/test5/l2_error.txt'
+PATH_MODEL = './results/test8/'
+PATH_LOSS_IMAGE = './results/test8/loss.png'
+PATH_L2_ERROR_IMAGE = './results/test8/l2_error.png'
+PATH_LOSS_TXT = './results/test8/loss.txt'
+PATH_L2_ERROR_TXT = './results/test8/l2_error.txt'
 
-NUM_ITERATOR = 200
+NUM_ITERATOR = 1000
 
 if __name__ == '__main__':
     # model = PDENetLight(3, 10)
     # dim_input, dim_output, hidden_size, num_hidden_layer
-    model = NeuralNetwork(3, 1, 16, 2)
+    model = NeuralNetwork(3, 1, 16, 1)
     model.init_weights()
 
     problem = Problem_3(model)
