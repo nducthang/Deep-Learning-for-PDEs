@@ -43,7 +43,7 @@ class NeuralNetwork(nn.Module):
                 layer = torch.mm(self.W[i], x) + self.b[i]
             else:
                 layer = torch.mm(self.W[i], layer) + self.b[i]
-            layer = torch.sigmoid(layer)
+            layer = torch.tanh(layer)
 
         out = torch.mm(self.W[self.num_hidden_layer],
                        layer) + self.b[self.num_hidden_layer]
