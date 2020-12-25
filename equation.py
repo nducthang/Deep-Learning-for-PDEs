@@ -6,7 +6,7 @@ import math
 import multiprocessing as mp
 
 class Equation:
-    def __init__(self, model, name = None, ndim = None, num_point=64):
+    def __init__(self, model, name = None, ndim = None, num_point=100):
         self.num_point = num_point
         self.model = model
         self.losses = []
