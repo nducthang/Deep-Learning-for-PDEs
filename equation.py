@@ -3,10 +3,10 @@ import torch
 from torch import optim
 import tqdm
 import math
-
+import multiprocessing as mp
 
 class Equation:
-    def __init__(self, model, name = None, ndim = None, num_point=400):
+    def __init__(self, model, name = None, ndim = None, num_point=64):
         self.num_point = num_point
         self.model = model
         self.losses = []
@@ -14,7 +14,7 @@ class Equation:
         self.num_iterator = 0
         self.name = name
         self.ndim = ndim
-        self.step_save = 50
+        self.step_save = 200
 
     def generate_data(self):
         pass
@@ -39,15 +39,18 @@ class Equation:
             samples = self.generate_data()
             optimizer.zero_grad()
 
+            # pool = mp.Pool()
+            # loss = pool.map(self.calculate_loss, samples)
             loss = self.calculate_loss(samples)
             loss.backward()
             self.losses.append(loss.item())
 
             optimizer.step()
-            L2_error = self.calculate_l2_error(test_points)
-            self.errors.append(L2_error)
-            if (i+1) % self.step_save == 0:
-                self.save_model(path_model + 'model_' + str(i+1) + '.bin')
+            # L2_error = self.calculate_l2_error(test_points)
+            # self.errors.append(L2_error)
+        # if (i+1) % self.step_save == 0:
+        # self.save_model(path_model + 'model_' + str(i+1) + '.bin')
+        self.save_model(path_model + 'model' + '.bin')
 
     def save_model(self, path):
         torch.save(self.model, path)
