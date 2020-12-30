@@ -106,8 +106,8 @@ class Problem_4(Equation):
         return [u1, u2, p]
 
     def split_grid(self):
-        x1 = np.linspace(-0.5, 1.0, 100)
-        x2 = np.linspace(-0.5, 1.5, 150)
+        x1 = np.linspace(-0.5, 1.0, 50)
+        x2 = np.linspace(-0.5, 1.5, 75)
         X, Y = np.meshgrid(x1, x2)
         zs = np.array([[x, y] for x,y in zip(np.ravel(X), np.ravel(Y))])
         return zs

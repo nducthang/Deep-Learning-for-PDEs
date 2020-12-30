@@ -34,7 +34,7 @@ def plot_error_u(uh1, uh2, u1, u2, x1_min, x1_max, x2_min, x2_max):
 if __name__ == '__main__':
     v = 0.025
     lamda = 1/(2*v) - math.sqrt(1/(4*(v**2))+4*math.pi**2)
-    model_path = './results/test2/model_2000.bin'
+    model_path = './Kết quả thực nghiệm/Phương trình 4/pt4_3tang_128/model.bin'
     model = torch.load(model_path)
 
     def uh1(x, y):

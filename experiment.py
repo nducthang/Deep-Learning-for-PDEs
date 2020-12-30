@@ -14,17 +14,17 @@ import torch
 # except RuntimeError:
 #     pass
 
-PATH_MODEL = './results/pt3_3tang/'
-PATH_LOSS_IMAGE = './results/pt3_3tang/loss.png'
-PATH_L2_ERROR_IMAGE = './results/pt3_3tang/l2_error.png'
-PATH_LOSS_TXT = './results/pt3_3tang/loss.txt'
-PATH_L2_ERROR_TXT = './results/pt3_3tang/l2_error.txt'
+PATH_MODEL = './results/pt4_4tang_128/'
+PATH_LOSS_IMAGE = './results/pt4_4tang_128/loss.png'
+PATH_L2_ERROR_IMAGE = './results/pt4_4tang_128/l2_error.png'
+PATH_LOSS_TXT = './results/pt4_4tang_128/loss.txt'
+PATH_L2_ERROR_TXT = './results/pt4_4tang_128/l2_error.txt'
 
 NUM_ITERATOR = 15000
 
 if __name__ == '__main__':
     # model = PDENetLight(3, 10)
-    model = NeuralNetwork(3, 1, 16, 3)
+    model = NeuralNetwork(2, 3, 128, 4)
     model.init_weights()
     # device = torch.device("cuda:0")
     # model.to(device)
@@ -36,7 +36,7 @@ if __name__ == '__main__':
     # model = NeuralNetwork(2, 1, 16, 2)
 
 
-    problem = Problem_3(model)
+    problem = Problem_4(model)
     problem.train(num_iterator=NUM_ITERATOR, path_model=PATH_MODEL)
     problem.plot_loss(PATH_LOSS_IMAGE)
     # problem.plot_l2_error(PATH_L2_ERROR_IMAGE)
